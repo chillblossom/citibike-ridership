@@ -2,7 +2,7 @@ WITH daily_rides AS (
   SELECT
     DATE(starttime) AS ride_date,
     COUNT(*) AS num_rides,
-    AVG(tripduration) / 60 AS avg_duration_min
+    AVG(tripduration) / 60 AS avg_duration_bymin
   FROM `bigquery-public-data.new_york_citibike.citibike_trips`
   WHERE starttime IS NOT NULL
   GROUP BY ride_date
@@ -24,7 +24,7 @@ daily_weather AS (
 SELECT
   rides.ride_date,
   rides.num_rides,
-  rides.avg_duration_min,
+  rides.avg_duration_bymin,
   weather.temp_f,
   weather.max_temp_f,
   weather.min_temp_f,
